@@ -6,10 +6,12 @@ import Test
 
 # Test the tests
 mutexUnitTestPass = Test.testMutex_unitTest()
-
 print("Unit Test: Mutex: " + ("Passed" if mutexUnitTestPass else "Failed"))
 
-if ((not mutexUnitTestPass)):
+deadlockUnitTestPass = Test.testDeadlock_unitTest()
+print("Unit Test: Deadlock: " + ("Passed" if deadlockUnitTestPass else "Failed"))
+
+if ((not mutexUnitTestPass) or (not deadlockUnitTestPass)):
     exit(-1)
 
 # Create a directed graph
@@ -48,6 +50,9 @@ newState(state.qStep(), state)
 # Do the tests
 mutexResult = Test.testMutex(g)
 print("Mutex Test " + ("passed" if mutexResult else "failed"))
+
+deadlockResult = Test.testDeadlock(g)
+print("Deadlock Test " + ("passed" if deadlockResult else "failed"))
 
 # Draw the graph
 pos = nx.kamada_kawai_layout(g)
