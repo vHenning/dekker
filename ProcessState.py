@@ -48,6 +48,44 @@ class ProcessState:
             newState.pWants = False
         return newState
 
+    # Returns the next process state if q's program counter advances.
+    # Returns the same process state if q cannot advance
+    def qStep(self):
+        newState = copy.deepcopy(self)
+        if (self.qProgramCounter == 1):
+            newState.qProgramCounter = 2
+        if (self.qProgramCounter == 2):
+            newState.qProgramCounter = 3
+            newState.qWants = True
+        if (self.qProgramCounter == 3):
+            if (self.pWants == True):
+                newState.qProgramCounter = 4
+            else:
+                newState.qProgramCounter = 8
+        if (self.qProgramCounter == 4):
+            if (self.turn == 1):
+                newState.qProgramCounter = 5
+            else:
+                newState.qProgramCounter = 3
+        if (self.qProgramCounter == 5):
+            newState.qProgramCounter = 6
+            newState.qWants = False
+        if (self.qProgramCounter == 6):
+            if (self.turn == 2):
+                newState.qProgramCounter = 7
+        if (self.qProgramCounter == 7):
+            newState.qProgramCounter = 3
+            newState.qWants = True
+        if (self.qProgramCounter == 8):
+            newState.qProgramCounter = 9
+        if (self.qProgramCounter == 9):
+            newState.qProgramCounter = 10
+            newState.turn = 1
+        if (self.qProgramCounter == 10):
+            newState.qProgramCounter = 1
+            newState.qWants = False
+        return newState
+
     def boolToString(self, bool):
         if (bool == True):
             return "t"
