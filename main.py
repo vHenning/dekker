@@ -2,6 +2,15 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 from ProcessState import ProcessState
+import Test
+
+# Test the tests
+mutexUnitTestPass = Test.testMutex_unitTest()
+
+print("Unit Test: Mutex: " + ("Passed" if mutexUnitTestPass else "Failed"))
+
+if ((not mutexUnitTestPass)):
+    exit(-1)
 
 # Create a directed graph
 g = nx.DiGraph()
@@ -35,6 +44,10 @@ print("Calculating first P step")
 newState(state.pStep(), state)
 print("Calculating first Q step")
 newState(state.qStep(), state)
+
+# Do the tests
+mutexResult = Test.testMutex(g)
+print("Mutex Test " + ("passed" if mutexResult else "failed"))
 
 # Draw the graph
 pos = nx.kamada_kawai_layout(g)
