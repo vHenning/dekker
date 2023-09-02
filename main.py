@@ -37,8 +37,8 @@ print("Calculating first Q step")
 newState(state.qStep(), state)
 
 # Draw the graph
-pos = nx.spring_layout(g)  # Positions of nodes for visualization
-nx.draw(g, pos, with_labels=True, node_size=500, node_color="skyblue", font_size=12, font_color="black", arrows=True)
+pos = nx.kamada_kawai_layout(g)
+nx.draw(g, pos, with_labels=True, node_size=200, node_color="skyblue", font_size=5, font_color="black", arrows=True)
 
 # Show the graph
 plt.axis("off")
