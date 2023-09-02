@@ -26,7 +26,7 @@ def testMutex_unitTest():
     g.add_node(normalState.toString())
 
     # expect true
-    if (testMutex(g, False) == False):
+    if (not testMutex(g, False)):
         print("Mutex Unit Test Fail: Detected Mutex violation where there should not be one (False Positive)")
         return False
 
@@ -37,7 +37,7 @@ def testMutex_unitTest():
     g.add_node(mutexState.toString())
 
     # expect false
-    if (testMutex(g, False) == True):
+    if (testMutex(g, False)):
         print("Mutex Unit Test Fail: Did not detect Mutex violation (False Negative)")
         return False
 
