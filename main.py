@@ -12,7 +12,7 @@ g = nx.DiGraph()
 # @param new New progress state
 # @param parent Parent progress that produced new progress
 # @param recursionCounter Not required, just for logging purposes
-def newState(new, parent, recursionCounter=0):
+def newState(new: ProcessState, parent: ProcessState, recursionCounter=0):
     # Log recursion level
     recursionCounter += 1
     print("Recursion level " + str(recursionCounter))
