@@ -11,7 +11,10 @@ print("Unit Test: Mutex: " + ("Passed" if mutexUnitTestPass else "Failed"))
 deadlockUnitTestPass = Test.testDeadlock_unitTest()
 print("Unit Test: Deadlock: " + ("Passed" if deadlockUnitTestPass else "Failed"))
 
-if ((not mutexUnitTestPass) or (not deadlockUnitTestPass)):
+starvationUnitTestPass = Test.testStarvation_unitTest()
+print("Unit Test: Starvation: " + ("Passed" if starvationUnitTestPass else "Failed"))
+
+if ((not mutexUnitTestPass) or (not deadlockUnitTestPass) or (not starvationUnitTestPass)):
     exit(-1)
 
 # Create a directed graph
@@ -53,6 +56,9 @@ print("Mutex Test " + ("passed" if mutexResult else "failed"))
 
 deadlockResult = Test.testDeadlock(g)
 print("Deadlock Test " + ("passed" if deadlockResult else "failed"))
+
+starvationResult = Test.testStarvation(g)
+print("Starvation Test " + ("passed" if starvationResult else "failed"))
 
 # Draw the graph
 pos = nx.kamada_kawai_layout(g)
