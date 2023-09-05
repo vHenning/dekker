@@ -61,9 +61,9 @@ starvationResult = Test.testStarvation(g)
 print("Starvation Test " + ("passed" if starvationResult else "failed"))
 
 # Draw the graph
-pos = nx.kamada_kawai_layout(g)
-nx.draw(g, pos, with_labels=True, node_size=200, node_color="skyblue", font_size=5, font_color="black", arrows=True)
+pos = nx.circular_layout(g)
+nx.draw(g, pos, with_labels=True, node_size=25, node_color="skyblue", font_size=0.5, font_color="black", arrows=True, width=0.25, arrowsize=1.5)
 
-# Show the graph
+# Save the graph
 plt.axis("off")
-plt.show()
+plt.savefig("graph.png", dpi=2000)
