@@ -59,6 +59,8 @@ def testStarvation(g: nx.DiGraph, logging=True):
 # @param predecessors Not required, only used internally because this is a recursive function
 # @return True if the critical section is reached, False otherwise
 def reachesCriticalSection(g: nx.DiGraph, node: str, criticalTrigger: str, predecessors=set()):
+    # We must create our own copy of predecessors because we do not want the next successor
+    # in the for loop a few lines down from here to know about all predecessors of this function call
     newSet = copy.deepcopy(predecessors)
     newSet.add(node)
 
