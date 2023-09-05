@@ -6,10 +6,10 @@ import Test
 
 # Test the tests
 mutexUnitTestPass = Test.testMutex_unitTest()
-print("Unit Test: Mutex: " + ("Passed" if mutexUnitTestPass else "Failed"))
+print("Unit Test: Mutex:      " + ("Passed" if mutexUnitTestPass else "Failed"))
 
 deadlockUnitTestPass = Test.testDeadlock_unitTest()
-print("Unit Test: Deadlock: " + ("Passed" if deadlockUnitTestPass else "Failed"))
+print("Unit Test: Deadlock:   " + ("Passed" if deadlockUnitTestPass else "Failed"))
 
 starvationUnitTestPass = Test.testStarvation_unitTest()
 print("Unit Test: Starvation: " + ("Passed" if starvationUnitTestPass else "Failed"))
@@ -52,10 +52,10 @@ newState(state.qStep(), state)
 
 # Do the tests
 mutexResult = Test.testMutex(g)
-print("Mutex Test " + ("passed" if mutexResult else "failed"))
+print("Mutex Test:     " + ("passed" if mutexResult else "failed"))
 
 deadlockResult = Test.testDeadlock(g)
-print("Deadlock Test " + ("passed" if deadlockResult else "failed"))
+print("Deadlock Test:  " + ("passed" if deadlockResult else "failed"))
 
 starvationResult = Test.testStarvation(g)
 print("Starvation Test " + ("passed" if starvationResult else "failed"))
