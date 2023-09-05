@@ -2,3 +2,4 @@ Generates a state diagram of Dekkers algorithm as discussed in Montana State Uni
 Checks generated diagram for mututal exclusion violations, deadlocks and starvation.
 
 Just execute main.py and look for log output and graph.png in the same directory.
+You may need some packages like networkx and matplotlib.
