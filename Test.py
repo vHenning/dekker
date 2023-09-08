@@ -23,10 +23,16 @@ def testMutex(g: nx.DiGraph, logging=True):
 # @return True if there are no deadlocks, False otherwise
 def testDeadlock(g: nx.DiGraph, logging=True):
     for node in g.nodes:
-        if (len(list(g.successors(node))) == 0):
+        successors = list(g.successors(node))
+        if (len(successors) == 0):
             if logging:
                 print("Failed Deadlock Test: Found dead end (Process State " + node + ")")
             return False
+        else:
+            if (len(successors) == 1 and successors[0] == node):
+                if logging:
+                    print("Failed Deadlock Test: Found process state looping itself (Process State " + node + ")")
+                return False
 
     return True
 
@@ -118,6 +124,15 @@ def testDeadlock_unitTest():
 
     # Only add one connection. This results in state2 not having any successors (dead end)
     g.add_edge(state1.toString(), state2.toString())
+
+    # expect false
+    result = testDeadlock(g, False)
+    if (result):
+        print("Deadlock Unit Test Fail: Did not detect Deadlock (False Positive)")
+        return False
+
+    # Add connection from last node to itself. This is still a deadlock.
+    g.add_edge(state2.toString(), state2.toString())
 
     # expect false
     result = testDeadlock(g, False)
